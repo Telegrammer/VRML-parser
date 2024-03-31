@@ -19,12 +19,12 @@
     <Filter Include="Файлы заголовков\data storage classes">
       <UniqueIdentifier>{5b01217d-9101-444b-b7ea-33d04f9dea64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\VRML standart type factories">
+      <UniqueIdentifier>{5c91adaf-f375-4b64-a4ca-acf6c9597fd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DescriptorVRML.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="TemplateToCopy.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="AbstractFactory.h">
@@ -45,9 +45,6 @@
     <ClInclude Include="GroupField.h">
       <Filter>Файлы заголовков\data storage classes</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="ShapeFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories</Filter>
     </ClInclude>
@@ -56,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="AppearanceFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,22 +72,22 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="AbstractFactory.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="FactoryVRML.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformFactory.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ShapeFactory.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ChildrenFactory.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\VRML standart type factories</Filter>
     </ClCompile>
     <ClCompile Include="AppearanceFactory.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\VRML standart type factories</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildrenFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryVRML.cpp">
+      <Filter>Исходные файлы\VRML standart type factories</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

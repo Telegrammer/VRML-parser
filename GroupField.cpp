@@ -1,4 +1,5 @@
 #include "GroupField.h"
+#include <iostream>
 
 GroupField::GroupField() : AbstractField(true, "untitled")
 {
@@ -75,6 +76,18 @@ void GroupField::setData(const std::vector<AbstractField*> other)
 void GroupField::addFieldPtr(AbstractField* field)
 {
 	_data.push_back(field);
+}
+
+void GroupField::print(std::ostream& os, size_t& depth)
+{
+	os << std::string(depth, '\t');
+	_isExtern == true ? os << "extern " : os << "";
+	os << _name << " {\n";
+	++depth;
+	for (int i = 0; i < _data.size(); i++) {
+		_data[i]->print(os, depth);
+	}
+	os << std::string(--depth, '\t') + "}\n";
 }
 
 void GroupField::setData(AbstractField* other) {}

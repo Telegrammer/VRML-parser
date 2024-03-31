@@ -18,6 +18,7 @@ public:
 	virtual Field* copy();
 	virtual T& getData();
 	virtual void setData(const T& other);
+	virtual void print(std::ostream& os, size_t& depth);
 };
 
 template <typename U>
@@ -36,6 +37,7 @@ public:
 	virtual std::vector<U*>& getData();
 	virtual void setData(const std::vector<U*>& other);
 	virtual void setData(const U& other, const std::size_t& index);
+	virtual void print(std::ostream& os, size_t& depth);
 };
 
 /////////////////////////////////////
@@ -93,6 +95,15 @@ inline T& Field<T>::getData() {
 template<typename T>
 inline void Field<T>::setData(const T& other) {
 	*_data = other;
+}
+
+template<typename T>
+inline void Field<T>::print(std::ostream& os, size_t& depth)
+{
+	os << std::string(depth, '\t');
+	_isExtern == true ? os << "extern " : os << " ";
+	os << _name << " " << _data << " \n";
+	--depth;
 }
 
 ////////////////////////////////////////
@@ -190,6 +201,20 @@ template<typename U>
 inline void Field<std::vector<U*>>::setData(const U& other, const std::size_t& index) {
 	delete _data[index];
 	_data[index] = new U(other);
+}
+
+template<typename U>
+inline void Field<std::vector<U*>>::print(std::ostream& os, size_t& depth)
+{
+	os << std::string(depth, '\t');
+	_isExtern == true ? os << "extern " : os << "";
+	os << _name << " [ ";
+	std::string delimeter = _data.size() > VECTOR_RESERVE_SIZE ? ",\n" + std::string(depth, '\t') : ", ";
+	for (int i = 0; i < _data.size() - 1; i++) {
+		os << *_data[i] << delimeter;
+	}
+	os << **(--_data.end());
+	os << " ]\n";
 }
 
 ///////////////////////////////////

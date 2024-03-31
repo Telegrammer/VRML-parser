@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <ostream>
 #define VECTOR_RESERVE_SIZE 32
 
 class AbstractField {
@@ -15,5 +16,5 @@ protected:
 public:
 	virtual ~AbstractField() = 0;
 	virtual AbstractField* copy() = 0;
-
+	virtual void print(std::ostream& os, size_t& depth) = 0; 
 };

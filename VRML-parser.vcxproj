@@ -106,7 +106,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -133,12 +133,11 @@
     <ClInclude Include="DescriptorVRML.h" />
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="FactoryVRML.h" />
-    <ClInclude Include="Header.h" />
     <ClInclude Include="ChildrenFactory.h" />
     <ClInclude Include="AppearanceFactory.h" />
+    <ClInclude Include="Painter.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="TransformFactory.h" />
-    <ClInclude Include="TemplateToCopy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractFactory.cpp" />
