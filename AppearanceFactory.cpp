@@ -3,7 +3,8 @@
 void AppearanceFactory::initTokens()
 {
 	_fieldTokens = { {"material",[](const std::string& name, const std::string filePart) -> GroupField* {return MaterialFactory(name).decrypt(filePart); }},
-					 {"Material",[](const std::string& name, const std::string filePart) -> GroupField* {return MaterialFactory(name).decrypt(filePart); }} };
+					 {"Material",[](const std::string& name, const std::string filePart) -> GroupField* {return MaterialFactory(name).decrypt(filePart); }},
+					 {"Appearance",[](const std::string& name, const std::string filePart) -> GroupField* {return AppearanceFactory(name).decrypt(filePart); }} };
 }
 
 AppearanceFactory::AppearanceFactory() : AbstractFactory()

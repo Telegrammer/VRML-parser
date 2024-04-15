@@ -2,7 +2,8 @@
 
 void MaterialFactory::initTokens()
 {
-	_fieldTokens = { { "diffuseColor", [](const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(false, name, _descriptor.parseStringIntoFloatVec(filePart)); } } };
+	_fieldTokens = { { "diffuseColor", [](const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(false, name, _descriptor.parseStringIntoFloatVec(filePart)); } },
+					 { "Material",[](const std::string& name, const std::string filePart) -> GroupField* {return MaterialFactory(name).decrypt(filePart); }} };
 	_fieldDefaultTokens = {
 		{"diffuseColor", [](const std::string& name) -> Field<std::vector<float*>>*{return new Field<std::vector<float*>>(false, name, {new float(0.8f), new float(0.8f), new float(0.8f)}); }},
 		{"ambientIntensity", [](const std::string& name) -> Field<float>*{return new Field<float>(false, name, 0.2f); }},
