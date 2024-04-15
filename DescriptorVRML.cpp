@@ -77,12 +77,15 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 		auto nextToken = fieldTokens.find(nextMatch.str());
 		if (nextToken == fieldTokens.end()) {
 			bodySize.second = fileData.substr(bodySize.first, fileData.size() - bodySize.first).find("\n");
+			fieldToPut->addFieldPtr(token->second(token->first, fileData.substr(bodySize.first, bodySize.second)));
 		}
 		else {
 			std::smatch singleFieldMatch = std::smatch(*(++it));
 			bodySize.second = findBodyLength(fileData.substr(singleFieldMatch.position(), fileData.size() - singleFieldMatch.position())) + (singleFieldMatch.position() - nextMatch.position());
+			GroupField* singleField = new GroupField(false, token->first);
+			singleField->addFieldPtr(nextToken->second(nextToken->first, fileData.substr(bodySize.first, bodySize.second)));
+			fieldToPut->addFieldPtr(singleField);
 		}
-		fieldToPut->addFieldPtr(token->second(token->first, fileData.substr(bodySize.first, bodySize.second)));
 
 	}
 }
