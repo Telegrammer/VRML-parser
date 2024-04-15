@@ -10,7 +10,7 @@ protected:
 
 	std::string _objectName;
 	std::map<std::string, std::function<AbstractField* (const std::string& name, const std::string& body)>> _fieldTokens;
-	std::map<std::string, std::function<AbstractField* (const std::string& name, const std::string& body)>> _fieldDefaultTokens;
+	std::map<std::string, std::function<AbstractField* (const std::string& name) >> _fieldDefaultTokens;
 
 	virtual void initTokens() = 0;
 	AbstractFactory();

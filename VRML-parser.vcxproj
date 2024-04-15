@@ -135,6 +135,9 @@
     <ClInclude Include="FactoryVRML.h" />
     <ClInclude Include="ChildrenFactory.h" />
     <ClInclude Include="AppearanceFactory.h" />
+    <ClInclude Include="GeometryFactory.h" />
+    <ClInclude Include="ConeFactory.h" />
+    <ClInclude Include="MaterialFactory.h" />
     <ClInclude Include="Painter.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="TransformFactory.h" />
@@ -144,9 +147,12 @@
     <ClCompile Include="AbstractField.cpp" />
     <ClCompile Include="AppearanceFactory.cpp" />
     <ClCompile Include="ChildrenFactory.cpp" />
+    <ClCompile Include="ConeFactory.cpp" />
     <ClCompile Include="DescriptorVRML.cpp" />
     <ClCompile Include="FactoryVRML.cpp" />
+    <ClCompile Include="GeometryFactory.cpp" />
     <ClCompile Include="GroupField.cpp" />
+    <ClCompile Include="MaterialFactory.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TransformFactory.cpp" />

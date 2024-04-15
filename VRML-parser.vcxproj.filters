@@ -22,6 +22,24 @@
     <Filter Include="Исходные файлы\VRML standart type factories">
       <UniqueIdentifier>{5c91adaf-f375-4b64-a4ca-acf6c9597fd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\VRML standart type factories\Shape">
+      <UniqueIdentifier>{85660232-df3f-4f1b-8113-ac1c94716a8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\VRML standart type factories\Shape\geometry">
+      <UniqueIdentifier>{04e65092-42d6-4785-a762-5ceaa307ffca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\VRML standart type factories\Shape">
+      <UniqueIdentifier>{d2aa9105-3b1b-41c3-8942-aa146d4b306c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\VRML standart type factories\Shape\geometry">
+      <UniqueIdentifier>{c48932ff-e526-4e75-a0af-e9b9f1573d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\data storage classes">
+      <UniqueIdentifier>{a7ccc8a8-0733-46c4-9371-6361ed48c6a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\VRML standart type factories\Transform">
+      <UniqueIdentifier>{d304b1be-1b43-4094-8ccd-d56f7bd25266}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DescriptorVRML.h">
@@ -45,27 +63,30 @@
     <ClInclude Include="GroupField.h">
       <Filter>Файлы заголовков\data storage classes</Filter>
     </ClInclude>
-    <ClInclude Include="ShapeFactory.h">
-      <Filter>Файлы заголовков\VRML standart type factories</Filter>
-    </ClInclude>
     <ClInclude Include="ChildrenFactory.h">
-      <Filter>Файлы заголовков\VRML standart type factories</Filter>
-    </ClInclude>
-    <ClInclude Include="AppearanceFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories</Filter>
     </ClInclude>
     <ClInclude Include="Painter.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeFactory.h">
+      <Filter>Файлы заголовков\VRML standart type factories\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="AppearanceFactory.h">
+      <Filter>Файлы заголовков\VRML standart type factories\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialFactory.h">
+      <Filter>Файлы заголовков\VRML standart type factories\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryFactory.h">
+      <Filter>Файлы заголовков\VRML standart type factories\Shape\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="ConeFactory.h">
+      <Filter>Файлы заголовков\VRML standart type factories\Shape\geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="AbstractField.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="GroupField.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="DescriptorVRML.cpp">
@@ -74,20 +95,35 @@
     <ClCompile Include="AbstractFactory.cpp">
       <Filter>Исходные файлы\VRML standart type factories</Filter>
     </ClCompile>
-    <ClCompile Include="AppearanceFactory.cpp">
-      <Filter>Исходные файлы\VRML standart type factories</Filter>
-    </ClCompile>
-    <ClCompile Include="ChildrenFactory.cpp">
-      <Filter>Исходные файлы\VRML standart type factories</Filter>
-    </ClCompile>
     <ClCompile Include="FactoryVRML.cpp">
       <Filter>Исходные файлы\VRML standart type factories</Filter>
     </ClCompile>
-    <ClCompile Include="TransformFactory.cpp">
-      <Filter>Исходные файлы\VRML standart type factories</Filter>
-    </ClCompile>
     <ClCompile Include="ShapeFactory.cpp">
-      <Filter>Исходные файлы\VRML standart type factories</Filter>
+      <Filter>Исходные файлы\VRML standart type factories\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="AppearanceFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="ConeFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractField.cpp">
+      <Filter>Исходные файлы\data storage classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupField.cpp">
+      <Filter>Исходные файлы\data storage classes</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildrenFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Transform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

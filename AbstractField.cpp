@@ -29,4 +29,9 @@ AbstractField& AbstractField::operator=(AbstractField&& tmpRhs) noexcept
 	return *this;
 }
 
-AbstractField::~AbstractField() {};
+AbstractField::~AbstractField() {}
+std::string& AbstractField::getName()
+{
+	return _name;
+}
+;

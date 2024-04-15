@@ -39,6 +39,12 @@ std::vector<float*> DescriptorVRML::parseStringIntoFloatVec(const std::string& f
     return result;
 }
 
+float& DescriptorVRML::parseStringIntoFloat(const std::string& stringOfFloat) const
+{
+	float result = std::stof(stringOfFloat);
+	return result;
+}
+
 void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut, const tokensIdentifier& fieldTokens)
 {
 	std::pair<size_t, size_t> bodySize = { 0, 0 };
@@ -48,6 +54,7 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 
 	for (std::sregex_iterator it = wordsBegin; it != wordsEnd; it++) {
 		std::smatch wordMatch = std::smatch(*it);
+		std::string lol = wordMatch.str();
 		auto token = fieldTokens.find(wordMatch.str());
 
 		if (token == fieldTokens.end()) {
@@ -58,6 +65,7 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 		}
 
 		std::smatch nextMatch = std::smatch(*(++it));
+		lol = nextMatch.str();
 		bodySize.first = nextMatch.position();
 
 		if (nextMatch.str() == "{" || nextMatch.str() == "[") {

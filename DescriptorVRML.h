@@ -19,6 +19,7 @@ public:
 	std::string readFile(const std::string& fileName);
 	int findBodyLength(const std::string& filePart);
 	std::vector<float*> parseStringIntoFloatVec(const std::string& stringOfFloats);
+	float& parseStringIntoFloat(const std::string& stringOfFloat) const;
 	
 	void decrypt(const std::string& fileData, GroupField* fieldToPut, const tokensIdentifier& fieldTokens);
 };

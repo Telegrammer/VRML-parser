@@ -2,6 +2,7 @@
 
 
 #include "AbstractFactory.h"
+#include "MaterialFactory.h"
 
 class AppearanceFactory : public AbstractFactory {
 private:

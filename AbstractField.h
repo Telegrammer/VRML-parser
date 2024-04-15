@@ -16,5 +16,6 @@ protected:
 public:
 	virtual ~AbstractField() = 0;
 	virtual AbstractField* copy() = 0;
-	virtual void print(std::ostream& os, size_t& depth) = 0; 
+	virtual void print(std::ostream& os, size_t& depth) = 0;
+	std::string& getName();
 };

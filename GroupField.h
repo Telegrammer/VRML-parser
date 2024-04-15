@@ -2,6 +2,8 @@
 #include "AbstractField.h"
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <set>
 
 class GroupField : public AbstractField {
 private:
@@ -18,6 +20,7 @@ public:
 	virtual GroupField* copy();
 	virtual std::vector<AbstractField*>& getData();
 	virtual void setData(const std::vector<AbstractField*> other);
+	std::set<std::string> getNames();
 	void addFieldPtr(AbstractField* field);
 	void print(std::ostream& os, size_t& depth);
 };

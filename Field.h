@@ -46,6 +46,7 @@ template<typename T>
 inline Field<T>::Field(bool isExtern, const std::string& name, const T& data) : AbstractField(isExtern, name), _data(new T(data)) {
 }
 
+
 template<typename T>
 inline Field<T>::Field(const Field<T>& rhs) : AbstractField(rhs), _data(new T(*rhs._data)) {
 }
@@ -101,9 +102,8 @@ template<typename T>
 inline void Field<T>::print(std::ostream& os, size_t& depth)
 {
 	os << std::string(depth, '\t');
-	_isExtern == true ? os << "extern " : os << " ";
-	os << _name << " " << _data << " \n";
-	--depth;
+	_isExtern == true ? os << "extern " : os << "";
+	os << _name << " " << *_data << "\n";
 }
 
 ////////////////////////////////////////

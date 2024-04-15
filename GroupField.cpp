@@ -73,6 +73,15 @@ void GroupField::setData(const std::vector<AbstractField*> other)
 	}
 }
 
+std::set<std::string> GroupField::getNames()
+{
+	std::set<std::string> result;
+	for (std::vector<AbstractField*>::const_iterator it = _data.begin(); it != _data.end(); it++) {
+		result.insert((*it)->getName());
+	}
+	return result;
+}
+
 void GroupField::addFieldPtr(AbstractField* field)
 {
 	_data.push_back(field);
@@ -87,7 +96,8 @@ void GroupField::print(std::ostream& os, size_t& depth)
 	for (int i = 0; i < _data.size(); i++) {
 		_data[i]->print(os, depth);
 	}
-	os << std::string(--depth, '\t') + "}\n";
+	--depth;
+	os << std::string(depth, '\t') + "}\n";
 }
 
 void GroupField::setData(AbstractField* other) {}
