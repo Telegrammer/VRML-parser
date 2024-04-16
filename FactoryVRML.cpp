@@ -1,10 +1,10 @@
 #include "FactoryVRML.h"
-#include "TransformFactory.h"
 
 
 void FactoryVRML::initTokens()
 {
-	_fieldTokens = { {"Transform", [](const std::string& name, const std::string& filePart)-> GroupField* {return TransformFactory(name).decrypt(filePart); }} };
+	_fieldTokens = { {"Transform", [](const std::string& name, const std::string& filePart)-> GroupField* {return TransformFactory(name).decrypt(filePart); }},
+					 {"Shape", [](const std::string& name, const std::string& filePart) -> GroupField* {return ShapeFactory(name).decrypt(filePart); }} };
 }
 
 FactoryVRML::FactoryVRML() {

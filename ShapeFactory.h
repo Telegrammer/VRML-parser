@@ -2,7 +2,10 @@
 
 
 #include "AppearanceFactory.h"
-#include "GeometryFactory.h"
+#include "ConeFactory.h"
+#include "BoxFactory.h"
+#include "SphereFactory.h"
+#include "CylinderFactory.h"
 
 class ShapeFactory : public AbstractFactory {
 private:

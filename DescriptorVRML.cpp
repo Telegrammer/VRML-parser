@@ -33,16 +33,32 @@ int DescriptorVRML::findBodyLength(const std::string& filePart)
 std::vector<float*> DescriptorVRML::parseStringIntoFloatVec(const std::string& filePart)
 {
     std::vector<float*> result;
-    std::regex floatRegex = std::regex("(-?\\b\\d+\\.\\d+\\b|-?\\b\\d+\\b)");
+	std::vector<std::string> floatStrings;
+    std::regex floatRegex = std::regex("(-?\\b\\d+\\.\\d+\\b|-?\\b\\d+\\b|-?\\.\\b\\d+\\b)");
     std::sregex_iterator floatsBegin = std::sregex_iterator(filePart.begin(), filePart.end(), floatRegex);
-    std::transform(floatsBegin, std::sregex_iterator(), std::back_inserter(result), [](std::match_results<std::string::const_iterator> num) -> float* {return new float(std::stof(num.str())); });
+	std::transform(floatsBegin, std::sregex_iterator(), std::back_inserter(floatStrings), [](std::match_results<std::string::const_iterator> num) -> std::string {
+		std::string str = num.str();
+		if (str[0] == '.') {
+			str.insert(0, "0");
+		}
+		return str;
+	});
+    std::transform(floatStrings.begin(), floatStrings.end(), std::back_inserter(result), [](std::string& num) -> float* {return new float(std::stof(num)); });
     return result;
 }
 
 float& DescriptorVRML::parseStringIntoFloat(const std::string& stringOfFloat) const
 {
 	float result = std::stof(stringOfFloat);
+	if (stringOfFloat[0] == '.') {
+		result = std::stof("0" + stringOfFloat);
+	}
 	return result;
+}
+
+bool DescriptorVRML::parseStringIntoBool(const std::string& stringOfBool) const
+{
+	return stringOfBool == "TRUE" ? true : false;
 }
 
 void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut, const tokensIdentifier& fieldTokens)

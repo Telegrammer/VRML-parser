@@ -1,5 +1,7 @@
 Transform {
   translation 0 0 -3.5
+  scale 1 1 1
+  rotation 0.45 .11, 0.85
   children Shape 
 {
     appearance Appearance {
@@ -14,3 +16,13 @@ height 2.0
 }
   }
 }
+
+Transform {}
+
+Shape {
+geometry Box {
+size 35152.534, 1235.231, .45
+}}
+
+Shape {
+geometry Cylinder { top FALSE}}

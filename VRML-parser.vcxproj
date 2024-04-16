@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AbstractField.h" />
+    <ClInclude Include="CylinderFactory.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="GroupField.h" />
     <ClInclude Include="DescriptorVRML.h" />
@@ -135,8 +136,9 @@
     <ClInclude Include="FactoryVRML.h" />
     <ClInclude Include="ChildrenFactory.h" />
     <ClInclude Include="AppearanceFactory.h" />
-    <ClInclude Include="GeometryFactory.h" />
     <ClInclude Include="ConeFactory.h" />
+    <ClInclude Include="BoxFactory.h" />
+    <ClInclude Include="SphereFactory.h" />
     <ClInclude Include="MaterialFactory.h" />
     <ClInclude Include="Painter.h" />
     <ClInclude Include="ShapeFactory.h" />
@@ -146,15 +148,17 @@
     <ClCompile Include="AbstractFactory.cpp" />
     <ClCompile Include="AbstractField.cpp" />
     <ClCompile Include="AppearanceFactory.cpp" />
+    <ClCompile Include="BoxFactory.cpp" />
     <ClCompile Include="ChildrenFactory.cpp" />
     <ClCompile Include="ConeFactory.cpp" />
+    <ClCompile Include="CylinderFactory.cpp" />
     <ClCompile Include="DescriptorVRML.cpp" />
     <ClCompile Include="FactoryVRML.cpp" />
-    <ClCompile Include="GeometryFactory.cpp" />
     <ClCompile Include="GroupField.cpp" />
     <ClCompile Include="MaterialFactory.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SphereFactory.cpp" />
     <ClCompile Include="TransformFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

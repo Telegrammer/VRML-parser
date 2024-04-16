@@ -1,6 +1,8 @@
 #pragma once
 
 #include "AbstractFactory.h"
+#include "TransformFactory.h"
+#include "ShapeFactory.h"
 
 
 class FactoryVRML : public AbstractFactory {

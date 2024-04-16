@@ -3,6 +3,7 @@
 #include "AbstractField.h"
 #include <string>
 #include <vector>
+#include <type_traits>
 
 template <typename T>
 class Field : public AbstractField {
@@ -103,7 +104,15 @@ inline void Field<T>::print(std::ostream& os, size_t& depth)
 {
 	os << std::string(depth, '\t');
 	_isExtern == true ? os << "extern " : os << "";
-	os << _name << " " << *_data << "\n";
+	os << _name << " ";
+	if (std::is_same<T, bool>::value) {
+		os << (*_data ? "TRUE" : "FALSE");
+	}
+	else {
+		os << *_data;
+	}
+
+	os << "\n";
 }
 
 ////////////////////////////////////////

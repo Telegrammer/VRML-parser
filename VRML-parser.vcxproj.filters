@@ -78,10 +78,16 @@
     <ClInclude Include="MaterialFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="GeometryFactory.h">
+    <ClInclude Include="ConeFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories\Shape\geometry</Filter>
     </ClInclude>
-    <ClInclude Include="ConeFactory.h">
+    <ClInclude Include="BoxFactory.h">
+      <Filter>Файлы заголовков\VRML standart type factories\Shape\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereFactory.h">
+      <Filter>Файлы заголовков\VRML standart type factories\Shape\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="CylinderFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories\Shape\geometry</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,9 +110,6 @@
     <ClCompile Include="AppearanceFactory.cpp">
       <Filter>Исходные файлы\VRML standart type factories\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="GeometryFactory.cpp">
-      <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
-    </ClCompile>
     <ClCompile Include="ConeFactory.cpp">
       <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
     </ClCompile>
@@ -124,6 +127,15 @@
     </ClCompile>
     <ClCompile Include="Source.cpp">
       <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="CylinderFactory.cpp">
+      <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

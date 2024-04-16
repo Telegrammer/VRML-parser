@@ -92,6 +92,10 @@ void GroupField::print(std::ostream& os, size_t& depth)
 	os << std::string(depth, '\t');
 	_isExtern == true ? os << "extern " : os << "";
 	os << _name;
+	if (_data.size() == 0) {
+		os << " NULL\n";
+		return;
+	}
 	os << " {\n";
 	++depth;
 	for (int i = 0; i < _data.size(); i++) {
