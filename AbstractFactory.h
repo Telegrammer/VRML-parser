@@ -13,6 +13,7 @@ protected:
 	std::map<std::string, std::function<AbstractField* (const std::string& name)>> _fieldDefaultTokens;
 
 	virtual void initTokens() = 0;
+	void initCustomFieldTokens();
 	AbstractFactory();
 	AbstractFactory(const std::string& name);
 	AbstractFactory(const AbstractFactory& rhs) = delete;

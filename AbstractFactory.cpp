@@ -3,10 +3,19 @@
 
 DescriptorVRML AbstractFactory::_descriptor = DescriptorVRML();
 
-AbstractFactory::AbstractFactory() : _objectName("untitled") {
+void AbstractFactory::initCustomFieldTokens()
+{
+	_fieldTokens = {};
+	_fieldDefaultTokens = { {"LOL", [](const std::string& name) -> GroupField* {return new GroupField(false, name); }} };
 }
 
-AbstractFactory::AbstractFactory(const std::string& name) : _objectName(name) {}
+AbstractFactory::AbstractFactory() : _objectName("untitled") {
+	initCustomFieldTokens();
+}
+
+AbstractFactory::AbstractFactory(const std::string& name) : _objectName(name) {
+	initCustomFieldTokens();
+}
 
 AbstractFactory::~AbstractFactory() {}
 
