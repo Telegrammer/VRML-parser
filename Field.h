@@ -138,7 +138,7 @@ inline Field<std::vector<U*>>::Field(bool isExtern, const std::string& name, std
 template<typename U>
 inline Field<std::vector<U*>>::Field(const Field<std::vector<U*>>& rhs) : AbstractField(rhs) {
 	_data.reserve(rhs._data.size() + VECTOR_RESERVE_SIZE);
-	for (int i = 0; i < _data.size(); i++) {
+	for (int i = 0; i < rhs._data.size(); i++) {
 		_data.push_back(new U(*(rhs._data[i])));
 	}
 }
@@ -149,7 +149,7 @@ inline Field<std::vector<U*>>& Field<std::vector<U*>>::operator=(const Field<std
 		for (int i = 0; i < _data.size(); i++) {
 			delete _data[i];
 		}
-		for (int i = 0; i < rhs.data.size(); i++) {
+		for (int i = 0; i < rhs._data.size(); i++) {
 			_data.push_back(new U(*(rhs._data[i])));
 		}
 	}

@@ -19,10 +19,12 @@ height 2.0
 
 Transform {}
 
-Shape {
+DEF MYSHAPE1 Shape {
 geometry Box {
 size 35152.534, 1235.231, .45
 }}
 
 Shape {
 geometry Cylinder { top FALSE }}
+
+USE MYSHAPE1

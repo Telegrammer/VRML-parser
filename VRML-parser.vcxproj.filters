@@ -66,9 +66,6 @@
     <ClInclude Include="ChildrenFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories</Filter>
     </ClInclude>
-    <ClInclude Include="Painter.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="ShapeFactory.h">
       <Filter>Файлы заголовков\VRML standart type factories\Shape</Filter>
     </ClInclude>
@@ -125,9 +122,6 @@
     <ClCompile Include="ChildrenFactory.cpp">
       <Filter>Исходные файлы\VRML standart type factories\Transform</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
     <ClCompile Include="BoxFactory.cpp">
       <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
     </ClCompile>
@@ -136,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="CylinderFactory.cpp">
       <Filter>Исходные файлы\VRML standart type factories\Shape\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

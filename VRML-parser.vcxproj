@@ -140,7 +140,6 @@
     <ClInclude Include="BoxFactory.h" />
     <ClInclude Include="SphereFactory.h" />
     <ClInclude Include="MaterialFactory.h" />
-    <ClInclude Include="Painter.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="TransformFactory.h" />
   </ItemGroup>
