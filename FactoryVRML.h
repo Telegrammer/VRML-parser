@@ -14,5 +14,5 @@ public:
 	FactoryVRML();
 	FactoryVRML(const std::string& name);
 	virtual ~FactoryVRML();
-	virtual GroupField* decrypt(const std::string& fileData) override;
+	virtual GroupField* decrypt(bool isExtern, const std::string& fileData) override;
 };

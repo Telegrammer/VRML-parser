@@ -1,7 +1,7 @@
 Transform {
-  translation 0 0 -3.5
+  extern translation 0 0 -3.5
   scale 1 1 1
-  rotation 0.45 .11, 0.85
+  extern rotation 0.45 .11, 0.85
   children Shape 
 {
     appearance Appearance {
@@ -11,7 +11,7 @@ Transform {
       }
     }
     geometry Cone {
-radius 1.0
+extern radius 1.0
 height 2.0
 }
   }

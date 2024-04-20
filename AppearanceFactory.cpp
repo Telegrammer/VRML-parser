@@ -2,8 +2,8 @@
 
 void AppearanceFactory::initTokens()
 {
-	_fieldTokens.insert({ {"material",[](const std::string& name, const std::string filePart) -> GroupField* {return new GroupField(false, name); }},
-						  {"Material",[](const std::string& name, const std::string filePart) -> GroupField* {return MaterialFactory(name).decrypt(filePart); }} });
+	_fieldTokens.insert({ {"material",[](bool isExtern, const std::string& name, const std::string filePart) -> GroupField* {return new GroupField(isExtern, name); }},
+						  {"Material",[](bool isExtern, const std::string& name, const std::string filePart) -> GroupField* {return MaterialFactory(name).decrypt(isExtern, filePart); }} });
 
 	_fieldDefaultTokens.insert(
 		{ {"material",[](const std::string& name) -> GroupField* {return new GroupField(false, name); }},

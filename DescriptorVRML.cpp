@@ -68,17 +68,24 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 	std::sregex_iterator wordsBegin = std::sregex_iterator(fileData.begin(), fileData.end(), wordsRegex);
 	std::sregex_iterator wordsEnd = std::sregex_iterator();
 
+	bool isExtern = false;
+
 	for (std::sregex_iterator it = wordsBegin; it != wordsEnd; it++) {
 		std::smatch wordMatch = std::smatch(*it);
 		std::string lol = wordMatch.str();
 		auto token = fieldTokens.find(wordMatch.str());
 
+		if (wordMatch.str() == "extern") {
+			isExtern = true;
+			continue;
+		}
 		if (token == fieldTokens.end()) {
 			continue;
 		}
 		if (wordMatch.position() > bodySize.first && wordMatch.position() < bodySize.second) {
 			continue;
 		}
+		
 
 		std::smatch nextMatch = std::smatch(*(++it));
 		lol = nextMatch.str();
@@ -86,23 +93,24 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 
 		if (nextMatch.str() == "{" || nextMatch.str() == "[") {
 			bodySize.second = findBodyLength(fileData.substr(bodySize.first, fileData.size() - bodySize.first));
-			fieldToPut->addFieldPtr(token->second(token->first, fileData.substr(bodySize.first, bodySize.second)));
+			fieldToPut->addFieldPtr(token->second(isExtern, token->first, fileData.substr(bodySize.first, bodySize.second)));
+			isExtern = false;
 			continue;
 		}
 
 		auto nextToken = fieldTokens.find(nextMatch.str());
 		if (nextToken == fieldTokens.end()) {
 			bodySize.second = fileData.substr(bodySize.first, fileData.size() - bodySize.first).find("\n");
-			fieldToPut->addFieldPtr(token->second(token->first, fileData.substr(bodySize.first, bodySize.second)));
+			fieldToPut->addFieldPtr(token->second(isExtern, token->first, fileData.substr(bodySize.first, bodySize.second)));
 		}
 		else {
 			std::smatch singleFieldMatch = std::smatch(*(++it));
 			bodySize.second = findBodyLength(fileData.substr(singleFieldMatch.position(), fileData.size() - singleFieldMatch.position())) + (singleFieldMatch.position() - nextMatch.position());
-			GroupField* singleField = new GroupField(false, token->first);
-			singleField->addFieldPtr(nextToken->second(nextToken->first, fileData.substr(bodySize.first, bodySize.second)));
+			GroupField* singleField = new GroupField(isExtern, token->first);
+			singleField->addFieldPtr(nextToken->second(isExtern, nextToken->first, fileData.substr(bodySize.first, bodySize.second)));
 			fieldToPut->addFieldPtr(singleField);
 		}
-
+		isExtern = false;
 	}
 }
 

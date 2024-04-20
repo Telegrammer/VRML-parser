@@ -11,7 +11,7 @@
 #include <map>
 #include <functional>
 
-typedef std::map<std::string, std::function<AbstractField* (const std::string& name, const std::string& filePart)>> tokensIdentifier;
+typedef std::map<std::string, std::function<AbstractField* (bool isExtern, const std::string& name, const std::string& filePart)>> tokensIdentifier;
 class DescriptorVRML {
 public:
 	DescriptorVRML();

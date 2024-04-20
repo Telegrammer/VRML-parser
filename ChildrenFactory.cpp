@@ -2,7 +2,7 @@
 
 void ChildrenFactory::initTokens()
 {
-	_fieldTokens.insert({ {"Shape", [](const std::string& name, const std::string& filePart)-> GroupField* {return ShapeFactory(name).decrypt(filePart); }} });
+	_fieldTokens.insert({ {"Shape", [](bool isExtern, const std::string& name, const std::string& filePart)-> GroupField* {return ShapeFactory(name).decrypt(isExtern, filePart); }} });
 }
 
 ChildrenFactory::ChildrenFactory()

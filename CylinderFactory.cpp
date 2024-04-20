@@ -2,11 +2,11 @@
 
 void CylinderFactory::initTokens()
 {
-	_fieldTokens.insert({ {"radius", [](const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(false, name, _descriptor.parseStringIntoFloat(filePart)); }},
-						  {"height", [](const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(false, name, _descriptor.parseStringIntoFloat(filePart)); }},
-						  {"side",   [](const std::string& name, const std::string& filePart)->Field<bool>*{return new Field<bool>(false, name, _descriptor.parseStringIntoBool(filePart)); }},
-						  {"bottom", [](const std::string& name, const std::string& filePart)->Field<bool>*{return new Field<bool>(false, name, _descriptor.parseStringIntoBool(filePart)); }},
-						  {"top",    [](const std::string& name, const std::string& filePart)->Field<bool>*{return new Field<bool>(false, name, _descriptor.parseStringIntoBool(filePart)); }}
+	_fieldTokens.insert({ {"radius", [](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor.parseStringIntoFloat(filePart)); }},
+						  {"height", [](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor.parseStringIntoFloat(filePart)); }},
+						  {"side",   [](bool isExtern, const std::string& name, const std::string& filePart)->Field<bool>*{return new Field<bool>(isExtern, name, _descriptor.parseStringIntoBool(filePart)); }},
+						  {"bottom", [](bool isExtern, const std::string& name, const std::string& filePart)->Field<bool>*{return new Field<bool>(isExtern, name, _descriptor.parseStringIntoBool(filePart)); }},
+						  {"top",    [](bool isExtern, const std::string& name, const std::string& filePart)->Field<bool>*{return new Field<bool>(isExtern, name, _descriptor.parseStringIntoBool(filePart)); }}
 	});
 	_fieldDefaultTokens.insert({
 		{"radius", [](const std::string& name) -> Field<float>*{return new Field<float>(false, name, 1.0f); }},

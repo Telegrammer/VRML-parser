@@ -6,7 +6,7 @@ DescriptorVRML AbstractFactory::_descriptor = DescriptorVRML();
 void AbstractFactory::initCustomFieldTokens()
 {
 	_fieldTokens = {};
-	_fieldDefaultTokens = { {"LOL", [](const std::string& name) -> GroupField* {return new GroupField(false, name); }} };
+	_fieldDefaultTokens = { };
 }
 
 AbstractFactory::AbstractFactory() : _objectName("untitled") {
@@ -19,9 +19,9 @@ AbstractFactory::AbstractFactory(const std::string& name) : _objectName(name) {
 
 AbstractFactory::~AbstractFactory() {}
 
-GroupField* AbstractFactory::decrypt(const std::string& fileData)
+GroupField* AbstractFactory::decrypt(bool isExtern, const std::string& fileData)
 {
-	GroupField* field = new GroupField(false, _objectName, {});
+	GroupField* field = new GroupField(isExtern, _objectName, {});
 	_descriptor.decrypt(fileData, field, _fieldTokens);
 	std::set<std::string> names = field->getNames();
 	for (auto it = _fieldDefaultTokens.begin(); it != _fieldDefaultTokens.end(); it++) {
