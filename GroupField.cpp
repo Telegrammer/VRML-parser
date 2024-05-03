@@ -51,6 +51,7 @@ GroupField::~GroupField()
 	for (int i = 0; i < _data.size(); i++) {
 		delete _data[i];
 	}
+	_data.clear();
 }
 
 GroupField* GroupField::copy()

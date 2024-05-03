@@ -1,7 +1,7 @@
 #include "AbstractFactory.h"
 
 
-DescriptorVRML AbstractFactory::_descriptor = DescriptorVRML();
+DescriptorVRML AbstractFactory::_descriptor;
 
 void AbstractFactory::initCustomFieldTokens()
 {
@@ -17,7 +17,10 @@ AbstractFactory::AbstractFactory(const std::string& name) : _objectName(name) {
 	initCustomFieldTokens();
 }
 
-AbstractFactory::~AbstractFactory() {}
+AbstractFactory::~AbstractFactory() {
+	_fieldDefaultTokens.clear();
+	_fieldTokens.clear();
+}
 
 GroupField* AbstractFactory::decrypt(bool isExtern, const std::string& fileData)
 {
