@@ -12,15 +12,25 @@
 #include <functional>
 
 typedef std::map<std::string, std::function<AbstractField* (bool isExtern, const std::string& name, const std::string& filePart)>> tokensIdentifier;
+
 class DescriptorVRML {
 private:
-	std::map<std::string, AbstractField*> _customFields;
-public:
+	static DescriptorVRML* _instance;
 	DescriptorVRML();
 	~DescriptorVRML();
+	DescriptorVRML(const DescriptorVRML& rhs) = delete;
+	DescriptorVRML& operator=(const DescriptorVRML& rhs) = delete;
+	std::map<std::string, AbstractField*> _customFields;
+public:
+	static DescriptorVRML* getInstance();
+	static void deleteInstance();
 	std::string readFile(const std::string& fileName);
 	int findBodyLength(const std::string& filePart);
+
+	std::vector<std::string*> parseStringIntoStringVec(const std::string& rawString);
+	std::vector<int*> parseStringIntoIntVec(const std::string& stringOfInts);
 	std::vector<float*> parseStringIntoFloatVec(const std::string& stringOfFloats);
+	std::vector<Vector3f*> parseStringIntoVector3f(const std::string& stringOfFloats);
 	float& parseStringIntoFloat(const std::string& stringOfFloat) const;
 	bool parseStringIntoBool(const std::string& stringOfBool) const;
 	

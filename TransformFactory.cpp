@@ -3,15 +3,16 @@
 
 void TransformFactory::initTokens()
 {
-	_fieldTokens.insert({ {"translation", [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); }},
-						  {"scale",		  [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); }},
-						  {"scaleOrientation", [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); }},
-						  {"center",	  [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); }},
-						  {"rotation",    [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); }},
-						  {"bboxCenter",  [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); }},
-						  {"bboxSize",    [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); }},
-						  {"children",	  [](bool isExtern, const std::string& name, const std::string& filePart)->GroupField* {return ChildrenFactory(name).decrypt(isExtern, filePart);} },
-						  {"Shape",		  [](bool isExtern, const std::string& name, const std::string& filePart)->GroupField* {return ShapeFactory(name).decrypt(isExtern, filePart); }} });
+	_fieldTokens.insert({ {"translation", [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); }},
+						  {"scale",		  [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); }},
+						  {"scaleOrientation", [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); }},
+						  {"center",	  [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); }},
+						  {"rotation",    [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); }},
+						  {"bboxCenter",  [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); }},
+						  {"bboxSize",    [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); }},
+						  {"children",	  [](bool isExtern, const std::string& name, const std::string& filePart)->GroupField* {return ChildrenFactory(name).decrypt(isExtern, filePart); } },
+						  {"Shape",		  [](bool isExtern, const std::string& name, const std::string& filePart)->GroupField* {return ShapeFactory(name).decrypt(isExtern, filePart); }}
+						 });
 	_fieldDefaultTokens.insert({
 		{"scale",			 [](const std::string& name) -> Field<std::vector<float*>>*{ return new Field<std::vector<float*>>(false, name, {new float(0.0f), new float(0.0f), new float(0.0f)});}},
 		{"scaleOrientation", [](const std::string& name) -> Field<std::vector<float*>>*{ return new Field<std::vector<float*>>(false, name, {new float(0.0f), new float(0.0f), new float(0.0f), new float(0.0f)}); }},

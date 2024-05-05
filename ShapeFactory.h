@@ -6,6 +6,8 @@
 #include "BoxFactory.h"
 #include "SphereFactory.h"
 #include "CylinderFactory.h"
+#include "IndexedLineSetFactory.h"
+#include "IndexedFaceSetFactory.h"
 
 class ShapeFactory : public AbstractFactory {
 private:

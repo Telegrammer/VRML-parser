@@ -1,9 +1,8 @@
 #pragma once
 
 
-#include "ShapeFactory.h"
 #include "ChildrenFactory.h"
-
+#include "ShapeFactory.h"
 
 class TransformFactory : public AbstractFactory {
 private:

@@ -1,1 +1,10 @@
-Shape {}
+
+
+
+Shape {
+geometry IndexedFaceSet {
+
+normal Normal {
+vector [     
+	]
+}}}

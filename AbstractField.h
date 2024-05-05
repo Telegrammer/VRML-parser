@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <ostream>
-#define VECTOR_RESERVE_SIZE 32
+#include "Vector3f.h"
+#define VECTOR_RESERVE_SIZE 256
 
 class AbstractField {
 protected:

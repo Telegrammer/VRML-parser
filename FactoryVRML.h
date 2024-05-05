@@ -3,6 +3,9 @@
 #include "AbstractFactory.h"
 #include "TransformFactory.h"
 #include "ShapeFactory.h"
+#include "ViewpointFactory.h"
+#include "WorldInfoFactory.h"
+#include "BackgroundFactory.h"
 
 
 class FactoryVRML : public AbstractFactory {

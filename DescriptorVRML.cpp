@@ -1,6 +1,23 @@
 #include "DescriptorVRML.h"
-
 #include <iostream>
+
+DescriptorVRML* DescriptorVRML::_instance = nullptr;
+
+DescriptorVRML* DescriptorVRML::getInstance()
+{
+	if (_instance == nullptr) {
+		_instance = new DescriptorVRML();
+	}
+	return _instance;
+}
+
+void DescriptorVRML::deleteInstance()
+{
+	if (_instance != nullptr) {
+		delete _instance;
+	}
+}
+
 std::string DescriptorVRML::readFile(const std::string& fileName)
 {
     return std::string(
@@ -31,29 +48,50 @@ int DescriptorVRML::findBodyLength(const std::string& filePart)
     return index;
 }
 
+std::vector<int*> DescriptorVRML::parseStringIntoIntVec(const std::string& filePart) {
+	std::vector<int*> result;
+	result.reserve(VECTOR_RESERVE_SIZE);
+	std::regex intRegex = std::regex("-?\\b\\d+\\b");
+	std::sregex_iterator intsBegin = std::sregex_iterator(filePart.begin(), filePart.end(), intRegex);
+	std::transform(intsBegin, std::sregex_iterator(), std::back_inserter(result), [](std::match_results<std::string::const_iterator> num) -> int* {return new int(std::stoi(num.str())); });
+	return result;
+}
+
+std::vector<std::string*> DescriptorVRML::parseStringIntoStringVec(const std::string& filePart) {
+	std::vector<std::string*> result;
+	result.reserve(VECTOR_RESERVE_SIZE);
+	std::regex stringRegex = std::regex("\".*\"");
+	std::sregex_iterator stringsBegin = std::sregex_iterator(filePart.begin(), filePart.end(), stringRegex);
+	std::transform(stringsBegin, std::sregex_iterator(), std::back_inserter(result), [](std::match_results<std::string::const_iterator> str) -> std::string* {return new std::string(str.str()); });
+	return result;
+}
+
 std::vector<float*> DescriptorVRML::parseStringIntoFloatVec(const std::string& filePart)
 {
     std::vector<float*> result;
-	std::vector<std::string> floatStrings;
-    std::regex floatRegex = std::regex("(-?\\b\\d+\\.\\d+\\b|-?\\b\\d+\\b|-?\\.\\b\\d+\\b)");
+	result.reserve(VECTOR_RESERVE_SIZE);
+    std::regex floatRegex = std::regex("(-?\\b\\d+\\.\\d+E?-?\\d*\\b|-?\\b\\d+\\b|-?\\.\\b\\d+E?-?\\d*\\b)");
     std::sregex_iterator floatsBegin = std::sregex_iterator(filePart.begin(), filePart.end(), floatRegex);
-	std::transform(floatsBegin, std::sregex_iterator(), std::back_inserter(floatStrings), [](std::match_results<std::string::const_iterator> num) -> std::string {
-		std::string str = num.str();
-		if (str[0] == '.') {
-			str.insert(0, "0");
-		}
-		return str;
-	});
-    std::transform(floatStrings.begin(), floatStrings.end(), std::back_inserter(result), [](std::string& num) -> float* {return new float(std::stof(num)); });
+	std::transform(floatsBegin, std::sregex_iterator(), std::back_inserter(result), [](std::match_results<std::string::const_iterator> num)->float* {return new float(std::stof(num.str())); });
     return result;
+}
+
+std::vector<Vector3f*> DescriptorVRML::parseStringIntoVector3f(const std::string& filePart)
+{
+	std::vector<Vector3f*> result;
+	result.reserve(VECTOR_RESERVE_SIZE);
+	std::regex vector3fRegex = std::regex(".*[^,]");
+	std::sregex_iterator vector3fBegin = std::sregex_iterator(filePart.begin(), filePart.end(), vector3fRegex);
+	std::transform(vector3fBegin, std::sregex_iterator(), std::back_inserter(result), [&](std::match_results<std::string::const_iterator> vec)->Vector3f* {return new Vector3f(parseStringIntoFloatVec(vec.str())); });
+	delete* (--result.end());
+	result.pop_back();
+	return result;
 }
 
 float& DescriptorVRML::parseStringIntoFloat(const std::string& stringOfFloat) const
 {
 	float result = std::stof(stringOfFloat);
-	if (stringOfFloat[0] == '.') {
-		result = std::stof("0" + stringOfFloat);
-	}
+
 	return result;
 }
 
@@ -74,11 +112,10 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 	std::string customFieldName;
 
 	for (std::sregex_iterator it = wordsBegin; it != wordsEnd; it++) {
-		std::smatch wordMatch = std::smatch(*it);;
+		std::smatch wordMatch = std::smatch(*it);
 		std::string lol = wordMatch.str();
 
 		if (wordMatch.position() > bodySize.first && wordMatch.position() < bodySize.first + bodySize.second) {
-			std::cout << lol << " " << "already initialized" << std::endl;
 			continue;
 		}
 
@@ -88,13 +125,13 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 		}
 
 		if (wordMatch.str() == "DEF") {
-			customFieldName = std::smatch(*++it).str();
+			customFieldName = std::smatch(*++it).str() + " ";
 			isCustom = true;
 			continue;
 		}
 
 		if (wordMatch.str() == "USE") {
-			customFieldName = std::smatch(*++it).str();
+			customFieldName = std::smatch(*++it).str() + " ";
 			std::cout << "using " << customFieldName << std::endl;
 			fieldToPut->addFieldPtr(_customFields.find(customFieldName)->second->copy());
 			isCustom = false;
@@ -114,7 +151,7 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 		bodySize.first = nextMatch.position();
 
 		if (nextMatch.str() == "USE") {
-			customFieldName = std::smatch(*++it).str();
+			customFieldName = std::smatch(*++it).str() + " ";
 			std::cout << "using " << customFieldName << std::endl;
 			GroupField* singleField = new GroupField(isExtern, token->first);
 			singleField->addFieldPtr(_customFields.find(customFieldName)->second->copy());
@@ -127,9 +164,10 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 		if (nextMatch.str() == "{" || nextMatch.str() == "[") {
 			bodySize.second = findBodyLength(fileData.substr(bodySize.first, fileData.size() - bodySize.first));
 			std::cout << "making " << customFieldName + token->first << std::endl;
-			fieldToPut->addFieldPtr(token->second(isExtern, customFieldName + " " + token->first, fileData.substr(bodySize.first, bodySize.second)));
+			auto node = token->second(isExtern, customFieldName + token->first, fileData.substr(bodySize.first, bodySize.second));
+			fieldToPut->addFieldPtr(node);
 			if (isCustom) {
-				_customFields.insert({ customFieldName, token->second(isExtern, customFieldName, fileData.substr(bodySize.first, bodySize.second))});
+				_customFields.insert({ customFieldName, node->copy()});
 				isCustom = false;
 				customFieldName = "";
 			}
@@ -150,7 +188,7 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 		else {
 			if (nextMatch.str() == "DEF") {
 				isCustom = true;
-				customFieldName = std::smatch(*(++it)).str();
+				customFieldName = std::smatch(*(++it)).str() + " ";
 				nextMatch = std::smatch(*(++it));
 				bodySize.first = nextMatch.position();
 				nextToken = fieldTokens.find(nextMatch.str());
@@ -161,10 +199,10 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 				bodySize.second = findBodyLength(fileData.substr(singleFieldMatch.position(), fileData.size() - singleFieldMatch.position())) + (singleFieldMatch.position() - nextMatch.position());
 				lol = fileData.substr(bodySize.first, bodySize.second);
 				GroupField* singleField = new GroupField(isExtern, token->first);
-				singleField->addFieldPtr(nextToken->second(isExtern, customFieldName + " " + nextToken->first, fileData.substr(bodySize.first, bodySize.second)));
+				singleField->addFieldPtr(nextToken->second(isExtern, customFieldName + nextToken->first, fileData.substr(bodySize.first, bodySize.second)));
 				fieldToPut->addFieldPtr(singleField);
 				if (isCustom) {
-					_customFields.insert({customFieldName,  nextToken->second(isExtern, customFieldName, fileData.substr(bodySize.first, bodySize.second)) });
+					_customFields.insert({customFieldName,  nextToken->second(isExtern, customFieldName + nextToken->first, fileData.substr(bodySize.first, bodySize.second))});
 					isCustom = false;
 					customFieldName = "";
 				}
@@ -173,7 +211,6 @@ void DescriptorVRML::decrypt(const std::string& fileData, GroupField* fieldToPut
 		isExtern = false;
 	}
 }
-
 
 DescriptorVRML::DescriptorVRML()
 {

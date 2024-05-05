@@ -128,6 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AbstractField.h" />
+    <ClInclude Include="BackgroundFactory.h" />
+    <ClInclude Include="CoordinateFactory.h" />
     <ClInclude Include="CylinderFactory.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="GroupField.h" />
@@ -138,27 +140,43 @@
     <ClInclude Include="AppearanceFactory.h" />
     <ClInclude Include="ConeFactory.h" />
     <ClInclude Include="BoxFactory.h" />
+    <ClInclude Include="GroupFactory.h" />
+    <ClInclude Include="IndexedFaceSetFactory.h" />
+    <ClInclude Include="IndexedLineSetFactory.h" />
+    <ClInclude Include="NormalFactory.h" />
     <ClInclude Include="SphereFactory.h" />
     <ClInclude Include="MaterialFactory.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="TransformFactory.h" />
+    <ClInclude Include="Vector3f.h" />
+    <ClInclude Include="ViewpointFactory.h" />
+    <ClInclude Include="WorldInfoFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractFactory.cpp" />
     <ClCompile Include="AbstractField.cpp" />
     <ClCompile Include="AppearanceFactory.cpp" />
+    <ClCompile Include="BackgroundFactory.cpp" />
     <ClCompile Include="BoxFactory.cpp" />
     <ClCompile Include="ChildrenFactory.cpp" />
     <ClCompile Include="ConeFactory.cpp" />
+    <ClCompile Include="CoordinateFactory.cpp" />
     <ClCompile Include="CylinderFactory.cpp" />
     <ClCompile Include="DescriptorVRML.cpp" />
     <ClCompile Include="FactoryVRML.cpp" />
+    <ClCompile Include="GroupFactory.cpp" />
     <ClCompile Include="GroupField.cpp" />
+    <ClCompile Include="IndexedFaceSetFactory.cpp" />
+    <ClCompile Include="IndexedLineSetFactory.cpp" />
     <ClCompile Include="MaterialFactory.cpp" />
+    <ClCompile Include="NormalFactory.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SphereFactory.cpp" />
     <ClCompile Include="TransformFactory.cpp" />
+    <ClCompile Include="Vector3f.cpp" />
+    <ClCompile Include="ViewpointFactory.cpp" />
+    <ClCompile Include="WorldInfoFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

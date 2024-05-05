@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ShapeFactory.h"
+#include "TransformFactory.h"
+#include "GroupFactory.h"
 
 
 class ChildrenFactory : public AbstractFactory {

@@ -106,7 +106,7 @@ inline void Field<T>::print(std::ostream& os, size_t& depth)
 	_isExtern == true ? os << "extern " : os << "";
 	os << _name << " ";
 	if (std::is_same<T, bool>::value) {
-		os << (*_data ? "TRUE" : "FALSE");
+		os << (_data != nullptr ? "TRUE" : "FALSE");
 	}
 	else {
 		os << *_data;
@@ -219,8 +219,23 @@ inline void Field<std::vector<U*>>::print(std::ostream& os, size_t& depth)
 	_isExtern == true ? os << "extern " : os << "";
 	os << _name << " [ ";
 	std::string delimeter = _data.size() > VECTOR_RESERVE_SIZE ? ",\n" + std::string(depth, '\t') : ", ";
+	
+	if (_data.size() == 0) {
+		os << " ]\n";
+		return;
+	}
+
 	for (int i = 0; i < _data.size() - 1; i++) {
 		os << *_data[i] << delimeter;
+		switch (i%4)
+		{
+		case 3:
+			delimeter = ",\n" + std::string(depth, '\t');
+			break;
+		default:
+			delimeter = ", ";
+			break;
+		}
 	}
 	os << **(--_data.end());
 	os << " ]\n";

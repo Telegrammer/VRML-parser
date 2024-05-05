@@ -10,7 +10,7 @@
       Shape {
       appearance Appearance {
           material Material {
-            diffuseColor   1.0 0.8 0.0
+            diffuseColor   1.0 .8E-02 0.0
             emissiveColor  1.0 0.8 0.0
             shininess      1.0
           }

@@ -2,12 +2,12 @@
 
 void MaterialFactory::initTokens()
 {
-	_fieldTokens.insert({ { "diffuseColor",   [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); } },
-						{ "emissiveColor",    [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); } },
-						{ "specularColor",    [](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor.parseStringIntoFloatVec(filePart)); } },
-						{ "ambientIntensity", [](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor.parseStringIntoFloat(filePart)); } },
-						{ "shinines",		  [](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor.parseStringIntoFloat(filePart)); } },
-						{ "transparency",     [](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor.parseStringIntoFloat(filePart)); } } });
+	_fieldTokens.insert({ { "diffuseColor",   [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); } },
+						{ "emissiveColor",    [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); } },
+						{ "specularColor",    [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<std::vector<float*>>*{return new Field<std::vector<float*>>(isExtern, name, _descriptor->parseStringIntoFloatVec(filePart)); } },
+						{ "ambientIntensity", [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor->parseStringIntoFloat(filePart)); } },
+						{ "shinines",		  [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor->parseStringIntoFloat(filePart)); } },
+						{ "transparency",     [&](bool isExtern, const std::string& name, const std::string& filePart)->Field<float>*{return new Field<float>(isExtern, name, _descriptor->parseStringIntoFloat(filePart)); } } });
 	
 	
 	

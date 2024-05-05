@@ -1,8 +1,5 @@
 #include "AbstractFactory.h"
 
-
-DescriptorVRML AbstractFactory::_descriptor;
-
 void AbstractFactory::initCustomFieldTokens()
 {
 	_fieldTokens = {};
@@ -11,10 +8,12 @@ void AbstractFactory::initCustomFieldTokens()
 
 AbstractFactory::AbstractFactory() : _objectName("untitled") {
 	initCustomFieldTokens();
+	_descriptor = DescriptorVRML::getInstance();
 }
 
 AbstractFactory::AbstractFactory(const std::string& name) : _objectName(name) {
 	initCustomFieldTokens();
+	_descriptor = DescriptorVRML::getInstance();
 }
 
 AbstractFactory::~AbstractFactory() {
@@ -25,7 +24,7 @@ AbstractFactory::~AbstractFactory() {
 GroupField* AbstractFactory::decrypt(bool isExtern, const std::string& fileData)
 {
 	GroupField* field = new GroupField(isExtern, _objectName, {});
-	_descriptor.decrypt(fileData, field, _fieldTokens);
+	_descriptor->decrypt(fileData, field, _fieldTokens);
 	std::set<std::string> names = field->getNames();
 	for (auto it = _fieldDefaultTokens.begin(); it != _fieldDefaultTokens.end(); it++) {
 		if (names.find(it->first) == names.end()) {
