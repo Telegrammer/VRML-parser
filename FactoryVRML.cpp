@@ -28,6 +28,10 @@ GroupField* FactoryVRML::decrypt(bool isExtern, const std::string& fileData)
 {
 	GroupField* scene = new GroupField(isExtern, _objectName, {});
 	std::string file = _descriptor->readFile(fileData);
+	int fin = file.size();
+	std::regex wordsRegex("(\\b\\w+\\b|\\{|\\[)");
+	std::sregex_iterator wordsBegin = std::sregex_iterator(file.begin(), file.end(), wordsRegex);
+	_descriptor->setWordsBegin(wordsBegin, file);
 	_descriptor->decrypt(file, scene, _fieldTokens);
 	return scene;
 }

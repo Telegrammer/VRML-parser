@@ -16,6 +16,9 @@ typedef std::map<std::string, std::function<AbstractField* (bool isExtern, const
 class DescriptorVRML {
 private:
 	static DescriptorVRML* _instance;
+	std::stack<std::pair<size_t, size_t>> _bracketsIndexes;
+	std::sregex_iterator _it;
+	std::sregex_iterator _end;
 	DescriptorVRML();
 	~DescriptorVRML();
 	DescriptorVRML(const DescriptorVRML& rhs) = delete;
@@ -24,6 +27,7 @@ private:
 public:
 	static DescriptorVRML* getInstance();
 	static void deleteInstance();
+	void setWordsBegin(std::sregex_iterator begin, const std::string& file);
 	std::string readFile(const std::string& fileName);
 	int findBodyLength(const std::string& filePart);
 
